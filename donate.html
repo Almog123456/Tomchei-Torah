@@ -173,6 +173,19 @@ function goAndSetAmt(a){window.location.href='donate.html?amt='+a;}
 document.addEventListener('DOMContentLoaded',function(){
   var el=document.getElementById('email-display');
   if(el){el.textContent='kolelketertora'+'@'+'gmail.com';}
+  // Read amount from URL
+  var params=new URLSearchParams(window.location.search);
+  var amt=params.get('amt');
+  if(amt){
+    var input=document.getElementById('d-amt');
+    if(input){input.value=amt;}
+    document.querySelectorAll('.amt-btn').forEach(function(btn){
+      btn.classList.remove('sel');
+      if(btn.getAttribute('onclick') && btn.getAttribute('onclick').indexOf(','+amt+')')!==-1){
+        btn.classList.add('sel');
+      }
+    });
+  }
   // Mark active nav item
   var path=window.location.pathname;
   document.querySelectorAll('.bnav-item').forEach(function(btn){
