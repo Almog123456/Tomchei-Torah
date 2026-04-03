@@ -250,17 +250,9 @@ document.addEventListener('DOMContentLoaded',function(){
       <div class="field-group"><label class="field-lbl">מספר ח"פ / ע"מ</label><input class="field-input" type="text" placeholder="000000000" inputmode="numeric"></div>
     </div>
 
-    <div class="form-sec-title">שיטת תשלום</div>
-    <div class="pay-row">
-      <button class="pay-opt active" onclick="switchPay(this,'card')"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg><span>כרטיס אשראי</span></button>
-      <button class="pay-opt" onclick="switchPay(this,'applepay')">
-        <svg width="20" height="20" viewBox="0 0 814 1000"><path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76 0-103.7 40.8-165.9 40.8s-105-36.8-162.8-106.3C141 420 140 340 140 315.3c0-106.7 83.4-161.3 165.3-161.3 79.7 0 129.9 44.9 180.6 44.9 48.7 0 107.3-47.9 200.2-47.9 31.4 0 113.4 2.9 179.8 77.3zm-78.4-117.7c33.5-43.2 56.8-103.4 56.8-163.6 0-8.4-.6-16.9-2.3-23.8-53.7 2-116.5 35.5-154.4 81.9-32.5 39.5-60.2 99.7-60.2 160.5 0 9 1.3 18 2 20.9 3.6.6 9.7 1.6 15.8 1.6 47.6 0 107.8-32.2 142.3-77.5z" fill="currentColor"/></svg>
-        <span style="font-size:.72rem;font-family:-apple-system,sans-serif;font-weight:600;">Apple Pay</span>
-      </button>
-      <button class="pay-opt" onclick="switchPay(this,'bit')"><span style="font-family:'Arial Rounded MT Bold',sans-serif;font-weight:900;font-size:1.15rem;color:#E3173E;line-height:1;">bit</span><span>תשלום</span></button>
-    </div>
+    
 
-    <div id="pay-card-form">
+    
       <div class="field-group"><label class="field-lbl">מספר כרטיס</label>
         <div class="card-wrap"><input class="field-input" type="text" id="d-card" placeholder="0000 0000 0000 0000" inputmode="numeric" maxlength="19" oninput="fmtCard(this)"><span class="card-icon-abs"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></span></div>
       </div>
@@ -270,24 +262,8 @@ document.addEventListener('DOMContentLoaded',function(){
       </div>
       <div class="field-group"><label class="field-lbl">שם בעל הכרטיס</label><input class="field-input" type="text" placeholder="ישראל ישראלי"></div>
     </div>
-    <div id="pay-applepay-form" style="display:none;">
-      <button class="apple-pay-btn" onclick="submitDonate()">
-        <svg width="22" height="22" viewBox="0 0 814 1000" style="fill:#fff;flex-shrink:0;"><path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76 0-103.7 40.8-165.9 40.8s-105-36.8-162.8-106.3C141 420 140 340 140 315.3c0-106.7 83.4-161.3 165.3-161.3 79.7 0 129.9 44.9 180.6 44.9 48.7 0 107.3-47.9 200.2-47.9 31.4 0 113.4 2.9 179.8 77.3zm-78.4-117.7c33.5-43.2 56.8-103.4 56.8-163.6 0-8.4-.6-16.9-2.3-23.8-53.7 2-116.5 35.5-154.4 81.9-32.5 39.5-60.2 99.7-60.2 160.5 0 9 1.3 18 2 20.9 3.6.6 9.7 1.6 15.8 1.6 47.6 0 107.8-32.2 142.3-77.5z"/></svg>
-        <span style="font-family:-apple-system,sans-serif;font-weight:600;font-size:1.1rem;">Pay</span>
-      </button>
-    </div>
-    <div id="pay-bit-form" style="display:none;">
-      <div style="background:var(--g5);border-radius:var(--radius-sm);padding:16px;text-align:center;margin-bottom:8px;border:1px solid var(--g4);">
-        <div style="font-size:.88rem;color:var(--g1);font-weight:600;margin-bottom:4px;">סכום לתשלום</div>
-        <div style="font-size:1.9rem;font-weight:900;color:var(--navy);" id="bit-amount-display">₪0</div>
-      </div>
-      <button class="bit-pay-btn" onclick="submitDonate()">
-        <span style="font-family:'Arial Rounded MT Bold',sans-serif;font-weight:900;font-size:1.35rem;color:#E3173E;">bit</span>
-        <span style="font-size:.92rem;font-weight:700;color:#E3173E;margin-right:4px;">שלמו עכשיו</span>
-      </button>
-    </div>
 
-    <button class="submit-btn" id="main-submit-btn" onclick="submitDonate()">היה שותף בתורה — תרמו עכשיו</button>
+    <button class="submit-btn" onclick="submitDonate()">היה שותף בתורה — תרמו עכשיו</button>
     <div class="secure-note"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> תשלום מאובטח · קבלה תישלח ב-SMS ובדוא"ל</div>
   </div>
 
@@ -303,7 +279,7 @@ function selAmt(btn,inputId,a){var scope=btn.closest('.donate-form-wrap');if(sco
 function clearErr(el){el.style.borderColor='';el.style.boxShadow='';}
 function showToast(msg){var t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(window._tt);window._tt=setTimeout(function(){t.classList.remove('show');},2600);}
 function switchReceipt(btn,type){document.querySelectorAll('.rt').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');document.getElementById('receipt-private').style.display=type==='private'?'block':'none';document.getElementById('receipt-business').style.display=type==='business'?'block':'none';}
-function switchPay(btn,type){document.querySelectorAll('.pay-opt').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');document.getElementById('pay-card-form').style.display=type==='card'?'block':'none';document.getElementById('pay-applepay-form').style.display=type==='applepay'?'block':'none';document.getElementById('pay-bit-form').style.display=type==='bit'?'block':'none';document.getElementById('main-submit-btn').style.display=type==='card'?'block':'none';if(type==='bit'){var a=document.getElementById('d-amt').value||'0';document.getElementById('bit-amount-display').textContent='₪'+a;}}
+
 function fmtCard(el){el.value=el.value.replace(/[^0-9]/g,'').substring(0,16).replace(/(.{4})/g,'$1 ').trim();}
 function fmtExp(el){var v=el.value.replace(/[^0-9]/g,'');if(v.length>=2)v=v.substring(0,2)+'/'+v.substring(2,4);el.value=v;}
 function submitDonate(){var amt=document.getElementById('d-amt').value;var name=document.getElementById('d-name').value;var phone=document.getElementById('d-phone').value;var email=document.getElementById('d-email').value;['d-amt','d-name','d-phone'].forEach(function(id){var el=document.getElementById(id);el.style.borderColor='';el.style.boxShadow='';});var hasError=false;if(!amt||Number(amt)<1){var el=document.getElementById('d-amt');el.style.borderColor='#E53935';el.style.boxShadow='0 0 0 3px rgba(229,57,53,.15)';hasError=true;}if(!name.trim()){var el=document.getElementById('d-name');el.style.borderColor='#E53935';el.style.boxShadow='0 0 0 3px rgba(229,57,53,.15)';hasError=true;}if(!phone.trim()){var el=document.getElementById('d-phone');el.style.borderColor='#E53935';el.style.boxShadow='0 0 0 3px rgba(229,57,53,.15)';hasError=true;}if(hasError){showToast('נא למלא את השדות המסומנים');var fw=document.querySelector('.donate-form-wrap');if(fw)fw.scrollTop=0;return;}var dedic=document.getElementById('d-dedic').value;var msg='תרומתך של <strong>₪'+parseInt(amt).toLocaleString()+'</strong> לכולל של הרב נועם ראובן התקבלה בברכה!<br><br>';if(dedic)msg+='הקדשה: '+dedic+'<br><br>';msg+='קבלה תישלח ל-'+phone+(email?' ול-'+email:'')+'.<br><br>יהי רצון שתזכה לראות פרי בלימוד התורה שתמכת בו! 🙏';localStorage.setItem('successMsg',msg);window.location.href='success.html';}
