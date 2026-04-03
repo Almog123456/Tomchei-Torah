@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>צור קשר — כולל תומכי תורה</title>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&family=Noto+Serif+Hebrew:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#1B3F8B;--navy-d:#122B6A;--navy-dd:#0C1E4A;
+  --navy-bg:#EEF2FA;--navy-bg2:#DDE4F5;
+  --cyan:#00B4D8;--cyan-d:#0090B0;
+  --gold:#FFE566;--gold-d:#F0D020;
+  --white:#FFFFFF;--black:#0D1B3E;
+  --g1:#2C3E6B;--g2:#6B7A99;--g3:#B0BCCC;--g4:#E4E9F2;--g5:#F4F6FB;
+  --green:#00C48C;--orange:#FF8C00;--red:#E53935;
+  --radius:14px;--radius-sm:9px;
+  --shadow:0 4px 20px rgba(13,27,62,.1);--shadow-lg:0 8px 40px rgba(13,27,62,.18);
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html,body{height:100%;background:#CBD5E8;}
+body{font-family:'Heebo',sans-serif;color:var(--black);max-width:390px;margin:0 auto;background:var(--white);min-height:100vh;}
+.screen{display:none;flex-direction:column;min-height:100vh;animation:fadeIn .22s ease;}
+.screen.active{display:flex;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+
+/* TOPBAR */
+.topbar{background:var(--navy);padding:12px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
+.topbar-logo{font-family:'Noto Serif Hebrew',serif;font-weight:900;font-size:.92rem;color:#fff;line-height:1.2;text-align:center;}
+.topbar-sub-text{font-size:.52rem;color:rgba(255,255,255,.35);letter-spacing:.1em;text-transform:uppercase;}
+.menu-btn{width:36px;height:36px;border-radius:8px;background:rgba(255,255,255,.12);border:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;flex-shrink:0;}
+.menu-btn span{display:block;width:17px;height:1.5px;background:#fff;border-radius:2px;}
+.back-btn{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.15);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem;color:#fff;flex-shrink:0;}
+.donate-top-btn{background:var(--gold);color:var(--navy-dd);font-weight:900;font-size:.78rem;border:none;border-radius:7px;padding:8px 16px;cursor:pointer;font-family:'Noto Serif Hebrew',serif;box-shadow:0 2px 12px rgba(232,160,32,.5);white-space:nowrap;flex-shrink:0;}
+
+/* DRAWER */
+.drawer-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:300;backdrop-filter:blur(2px);}
+.drawer-overlay.open{display:block;}
+.drawer{position:fixed;top:0;right:-290px;width:290px;height:100vh;background:var(--navy-dd);z-index:400;transition:right .28s ease;box-shadow:-6px 0 40px rgba(0,0,0,.35);display:flex;flex-direction:column;}
+.drawer.open{right:0;}
+.drawer-header{padding:52px 22px 20px;border-bottom:1px solid rgba(255,255,255,.08);}
+.drawer-name{font-size:1.2rem;font-weight:900;color:#fff;font-family:'Noto Serif Hebrew',serif;}
+.drawer-sub{font-size:.8rem;color:rgba(255,255,255,.4);margin-top:4px;}
+.drawer-nav{flex:1;padding:8px 0;}
+.drawer-item{display:flex;align-items:center;gap:14px;padding:15px 22px;cursor:pointer;border:none;border-bottom:1px solid rgba(255,255,255,.05);background:transparent;width:100%;font-family:'Heebo',sans-serif;text-align:right;transition:background .15s;}
+.drawer-item:hover{background:rgba(255,255,255,.06);}
+.di-icon{width:38px;height:38px;border-radius:9px;background:rgba(0,180,216,.15);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
+.di-text{font-size:1.05rem;font-weight:600;color:rgba(255,255,255,.85);}
+.drawer-footer{padding:16px 22px;border-top:1px solid rgba(255,255,255,.07);font-size:.65rem;color:rgba(255,255,255,.2);text-align:center;}
+
+/* HERO */
+.hero{background:var(--navy);padding:28px 20px 26px;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.06) 1px,transparent 1px);background-size:22px 22px;}
+.hero::after{content:'';position:absolute;top:-80px;left:-80px;width:260px;height:260px;background:radial-gradient(circle,rgba(0,180,216,.2),transparent 65%);pointer-events:none;}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(232,160,32,.2);border:1px solid rgba(232,160,32,.5);border-radius:4px;padding:5px 14px;font-size:.72rem;font-weight:800;color:var(--gold);letter-spacing:.08em;margin-bottom:16px;position:relative;z-index:1;}
+.hero-quote{border-right:3px solid var(--gold);padding:14px 16px;margin-bottom:18px;position:relative;z-index:1;}
+.hero-quote-text{font-size:.95rem;font-weight:700;color:rgba(255,255,255,.9);font-family:'Noto Serif Hebrew',serif;line-height:1.65;margin-bottom:4px;}
+.hero-quote-src{font-size:.78rem;color:rgba(255,255,255,.4);}
+.hero-title{font-family:'Noto Serif Hebrew',serif;font-size:2.2rem;font-weight:900;color:#fff;line-height:1.05;margin-bottom:6px;position:relative;z-index:1;text-align:center;}
+.hero-sub{font-size:.95rem;font-weight:600;color:var(--cyan);margin-bottom:8px;position:relative;z-index:1;text-align:center;font-family:'Noto Serif Hebrew',serif;}
+.hero-desc{font-size:.92rem;color:rgba(255,255,255,.55);margin-bottom:22px;position:relative;z-index:1;text-align:center;line-height:1.6;}
+.hero-kpi{display:flex;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius-sm);overflow:hidden;position:relative;z-index:1;}
+.kpi-item{flex:1;padding:14px 8px;text-align:center;border-left:1px solid rgba(255,255,255,.08);}
+.kpi-item:last-child{border:none;}
+.kpi-val{font-size:1.5rem;font-weight:900;color:#fff;}
+.kpi-title{font-size:.78rem;font-weight:700;color:var(--cyan);margin-bottom:2px;}
+.kpi-desc{font-size:.75rem;color:rgba(255,255,255,.45);line-height:1.3;margin-top:2px;}
+
+/* CTA BUTTON */
+.cta-wrap{padding:18px 18px 0;}
+.cta-btn{width:100%;background:linear-gradient(135deg,var(--gold) 0%,var(--gold-d) 100%);border:none;border-radius:var(--radius);padding:0;cursor:pointer;transition:transform .12s,box-shadow .12s;box-shadow:0 6px 28px rgba(232,160,32,.55);overflow:hidden;display:block;}
+.cta-btn:active{transform:scale(.98);}
+.cta-inner{display:flex;align-items:center;justify-content:space-between;padding:20px 22px;}
+.cta-text-wrap{}
+.cta-title{font-size:1.15rem;font-weight:900;color:var(--navy-dd);font-family:'Noto Serif Hebrew',serif;margin-bottom:3px;text-align:right;}
+.cta-sub{font-size:.78rem;color:rgba(12,30,74,.65);text-align:right;}
+.cta-icon{font-size:1.8rem;flex-shrink:0;}
+
+/* CONTENT */
+.scroll-body{flex:1;overflow-y:auto;padding-bottom:80px;background:var(--white);}
+.content{padding:22px 18px 0;}
+.sec-label{font-size:.78rem;font-weight:800;color:var(--cyan-d);text-transform:uppercase;letter-spacing:.15em;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+.sec-label::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--navy-bg2),transparent);}
+.section{margin-bottom:28px;}
+
+/* ABOUT PREVIEW */
+.about-preview{background:var(--navy-bg);border-radius:var(--radius);padding:20px;margin-bottom:14px;border:1px solid var(--navy-bg2);}
+.ap-row{display:flex;align-items:flex-start;gap:14px;margin-bottom:14px;}
+.ap-row:last-child{margin:0;}
+.ap-icon{width:44px;height:44px;border-radius:10px;background:var(--navy);display:flex;align-items:center;justify-content:center;flex-shrink:0;} .ap-icon svg{stroke:rgba(255,255,255,.8);}
+.ap-title{font-size:.95rem;font-weight:800;color:var(--navy);margin-bottom:3px;}
+.ap-text{font-size:.88rem;color:var(--g1);line-height:1.6;}
+
+/* IMPACT */
+.impact-row{display:flex;gap:8px;margin-bottom:4px;}
+.impact-item{flex:1;background:var(--navy);border-radius:var(--radius-sm);padding:14px 8px;text-align:center;}
+.impact-val{font-size:1.2rem;font-weight:900;color:var(--gold);margin-bottom:3px;}
+.impact-lbl{font-size:.82rem;color:rgba(255,255,255,.6);line-height:1.4;}
+.impact-desc{font-size:.75rem;color:rgba(255,255,255,.35);margin-top:2px;line-height:1.3;}
+
+/* TIERS */
+.tier-card{background:var(--white);border:1.5px solid var(--g4);border-radius:var(--radius);padding:16px 18px;margin-bottom:10px;cursor:pointer;transition:.15s;box-shadow:var(--shadow);}
+.tier-card:hover,.tier-card:active{border-color:var(--gold);transform:translateY(-1px);}
+.tier-card.featured{border-color:var(--navy);background:var(--navy-bg);}
+.tier-top{display:flex;align-items:center;gap:12px;margin-bottom:8px;}
+.tier-icon{width:44px;height:44px;border-radius:10px;background:var(--navy);display:flex;align-items:center;justify-content:center;flex-shrink:0;} .tier-icon svg{stroke:rgba(255,255,255,.85);}
+.tier-card.featured .tier-icon{background:var(--gold);} .tier-card.featured .tier-icon svg{stroke:var(--navy-dd);}
+.tier-name{font-size:1rem;font-weight:900;color:var(--black);}
+.tier-amt{font-size:1.1rem;font-weight:900;color:var(--navy);margin-right:auto;}
+.tier-tag{font-size:.62rem;font-weight:800;background:var(--gold);color:var(--navy-dd);padding:2px 8px;border-radius:3px;display:inline-block;margin-bottom:4px;}
+.tier-desc{font-size:.88rem;color:var(--g1);line-height:1.55;}
+
+/* CONTACT */
+.contact-row{display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid var(--g4);}
+.contact-row:last-child{border:none;}
+.contact-icon{width:42px;height:42px;border-radius:50%;background:var(--navy-bg);display:flex;align-items:center;justify-content:center;flex-shrink:0;} .contact-icon svg{stroke:var(--navy);}
+.contact-label{font-size:.72rem;color:var(--g2);margin-bottom:2px;}
+.contact-val{font-size:.95rem;font-weight:700;color:var(--black);}
+.contact-btn{background:var(--cyan);border:none;border-radius:6px;padding:8px 16px;font-family:'Heebo',sans-serif;font-size:.78rem;font-weight:700;color:#fff;cursor:pointer;white-space:nowrap;}
+
+/* DONATE FORM */
+.donate-form-wrap{flex:1;overflow-y:auto;padding:20px 18px 40px;background:var(--white);min-height:100vh;}
+.amount-lbl{font-size:.9rem;font-weight:800;color:var(--g1);margin-bottom:10px;}
+.amt-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px;}
+.amt-btn{padding:13px 4px;border:1.5px solid var(--g4);border-radius:var(--radius-sm);background:var(--white);font-family:'Heebo',sans-serif;font-size:.92rem;font-weight:700;color:var(--black);cursor:pointer;transition:.12s;text-align:center;}
+.amt-btn:hover{border-color:var(--gold);}
+.amt-btn.sel{border-color:var(--navy);background:var(--navy);color:#fff;box-shadow:0 2px 10px rgba(27,63,139,.25);}
+.field-group{margin-bottom:14px;}
+.field-lbl{font-size:.92rem;font-weight:700;color:var(--g1);margin-bottom:7px;display:block;}
+.field-input{width:100%;padding:14px 15px;border:1.5px solid var(--g4);border-radius:var(--radius-sm);font-family:'Heebo',sans-serif;font-size:1rem;color:var(--black);background:var(--white);outline:none;transition:.15s;}
+.field-input:focus{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(0,180,216,.1);}
+.field-input::placeholder{color:var(--g3);}
+.form-sec-title{font-size:.82rem;font-weight:800;color:var(--cyan-d);text-transform:uppercase;letter-spacing:.12em;margin:18px 0 11px;display:flex;align-items:center;gap:8px;}
+.form-sec-title::after{content:'';flex:1;height:1px;background:var(--g4);}
+.receipt-tabs{display:flex;background:var(--g5);border-radius:var(--radius-sm);padding:3px;margin-bottom:14px;}
+.rt{flex:1;padding:9px;border:none;background:transparent;font-family:'Heebo',sans-serif;font-size:.88rem;font-weight:700;color:var(--g2);cursor:pointer;border-radius:7px;transition:.15s;}
+.rt.active{background:var(--navy);color:#fff;}
+.pay-row{display:flex;gap:8px;margin-bottom:16px;}
+.pay-opt{flex:1;display:flex;flex-direction:column;align-items:center;gap:5px;padding:12px 4px;border:1.5px solid var(--g4);border-radius:var(--radius-sm);background:var(--white);font-family:'Heebo',sans-serif;font-size:.75rem;font-weight:700;color:var(--g2);cursor:pointer;transition:.15s;}
+.pay-opt.active{border-color:var(--cyan);background:var(--navy-bg);color:var(--navy);}
+.card-wrap{position:relative;}
+.card-icon-abs{position:absolute;left:13px;top:50%;transform:translateY(-50%);font-size:1rem;pointer-events:none;}
+.submit-btn{width:100%;padding:18px;background:linear-gradient(135deg,var(--gold) 0%,var(--gold-d) 100%);border:none;border-radius:var(--radius);font-family:'Noto Serif Hebrew',serif;font-size:1.1rem;font-weight:700;color:var(--navy-dd);cursor:pointer;margin-top:12px;box-shadow:0 4px 22px rgba(232,160,32,.5);transition:transform .1s;letter-spacing:.02em;}
+.submit-btn:active{transform:scale(.98);}
+.secure-note{text-align:center;font-size:.85rem;color:var(--g3);margin-top:10px;}
+.apple-pay-btn{width:100%;padding:15px;background:#000;border:none;border-radius:12px;font-size:1.1rem;font-weight:700;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:4px;}
+.bit-pay-btn{width:100%;padding:15px;background:#fff;border:2px solid #E3173E;border-radius:12px;font-size:1rem;font-weight:700;color:#E3173E;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;}
+
+/* SUCCESS */
+.success-wrap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 28px;text-align:center;background:var(--white);}
+.success-circle{width:88px;height:88px;border-radius:50%;background:var(--navy);margin-bottom:22px;display:flex;align-items:center;justify-content:center;display:flex;align-items:center;justify-content:center;animation:pop .4s cubic-bezier(.34,1.56,.64,1);box-shadow:0 8px 30px rgba(27,63,139,.3);}
+@keyframes pop{from{transform:scale(0);opacity:0}to{transform:scale(1);opacity:1}}
+.success-title{font-size:1.8rem;font-weight:900;margin-bottom:8px;font-family:'Noto Serif Hebrew',serif;}
+.success-msg{font-size:.9rem;color:var(--g2);line-height:1.75;margin-bottom:32px;}
+.success-back{width:100%;padding:15px;background:var(--navy);border:none;border-radius:var(--radius);font-family:'Heebo',sans-serif;font-size:.95rem;font-weight:900;color:#fff;cursor:pointer;}
+
+/* TOAST */
+.toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(120px);background:var(--navy);color:#fff;padding:11px 22px;border-radius:30px;font-size:.82rem;font-weight:700;z-index:9999;transition:transform .3s;white-space:nowrap;box-shadow:0 4px 20px rgba(0,0,0,.3);}
+.toast.show{transform:translateX(-50%) translateY(0);}
+
+/* BOTTOM NAV */
+.bnav{position:fixed;bottom:0;right:0;left:0;max-width:390px;margin:0 auto;background:var(--white);border-top:1px solid var(--g4);display:flex;z-index:200;box-shadow:0 -2px 16px rgba(13,27,62,.07);}
+.bnav-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:9px 4px;border:none;background:transparent;cursor:pointer;gap:3px;transition:.15s;}
+.bnav-icon{font-size:1.15rem;color:var(--g3);transition:.15s;}
+.bnav-lbl{font-size:.72rem;font-weight:700;color:var(--g3);}
+.bnav-lbl{font-size:.72rem;font-weight:700;color:var(--g3);} .bnav-item.active .bnav-lbl{color:var(--navy);font-weight:800;}
+</style>
+<script>
+function openDrawer(){document.getElementById('drawer').classList.add('open');document.getElementById('drawerOverlay').classList.add('open');}
+function closeDrawer(){document.getElementById('drawer').classList.remove('open');document.getElementById('drawerOverlay').classList.remove('open');}
+function go(url){window.location.href=url;}
+function goAndSetAmt(a){window.location.href='donate.html?amt='+a;}
+document.addEventListener('DOMContentLoaded',function(){
+  var el=document.getElementById('email-display');
+  if(el){el.textContent='kolelketertora'+'@'+'gmail.com';}
+  // Mark active nav item
+  var path=window.location.pathname;
+  document.querySelectorAll('.bnav-item').forEach(function(btn){
+    btn.classList.remove('active');
+    var href=btn.getAttribute('data-page')||'';
+    if((path.endsWith('index.html')||path==='/') && href==='index.html'){btn.classList.add('active');}
+    else if(path.indexOf(href)!==-1 && href!=='index.html'){btn.classList.add('active');}
+  });
+});
+</script>
+</head>
+<body>
+<div class="toast" id="toast"></div>
+<!-- DRAWER -->
+<div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
+<div class="drawer" id="drawer">
+  <div class="drawer-header">
+    <div style="margin-bottom:12px;"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.6)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
+    <div class="drawer-name">תומכי תורה</div>
+    <div class="drawer-sub">הכולל של הרב נועם ראובן שליט״א</div>
+  </div>
+  <div class="drawer-nav">
+    <button class="drawer-item" onclick="closeDrawer();window.location.href='index.html'"><div class="di-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div><div class="di-text">דף הבית</div></button>
+    <button class="drawer-item" onclick="closeDrawer();window.location.href='donate.html'"><div class="di-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div><div class="di-text">תרומה לכולל</div></button>
+    <button class="drawer-item" onclick="closeDrawer();window.location.href='about.html'"><div class="di-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><div class="di-text">אודות הכולל</div></button>
+    <button class="drawer-item" onclick="closeDrawer();window.location.href='contact.html'"><div class="di-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.77 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><div class="di-text">צור קשר</div></button>
+  </div>
+  <div class="drawer-footer">תומכי תורה · בני ברק · תשפ״ה</div>
+</div>
+<div style="display:flex;flex-direction:column;min-height:100vh;">
+<div class="topbar">
+    <button class="menu-btn" onclick="openDrawer()"><span></span><span></span><span></span></button>
+    <div style="text-align:center;"><div class="topbar-logo">צור קשר</div></div>
+    <button class="back-btn" onclick="window.location.href='index.html'">←</button>
+  </div>
+  <div style="flex:1;overflow-y:auto;padding:24px 18px 120px;background:var(--white);">
+
+    <div style="background:var(--navy);border-radius:var(--radius);padding:20px;margin-bottom:20px;text-align:center;">
+      <div style="margin-bottom:12px;"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.7)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+      <div style="font-family:'Noto Serif Hebrew',serif;font-size:1.1rem;font-weight:900;color:#fff;margin-bottom:6px;">נשמח לשמוע מכם</div>
+      <div style="font-size:.85rem;color:rgba(255,255,255,.55);line-height:1.6;">לשאלות, הקדשות או סתם לברכה — אנחנו כאן</div>
+    </div>
+
+    <div style="background:var(--white);border:1px solid var(--g4);border-radius:var(--radius);padding:6px 18px;box-shadow:var(--shadow);">
+      <div class="contact-row">
+        <div class="contact-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.77 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+        <div style="flex:1;">
+          <div class="contact-label">טלפון הכולל</div>
+          <div class="contact-val">052-7160940</div>
+        </div>
+        <button class="contact-btn" onclick="window.location.href='tel:0527160940'">התקשר</button>
+      </div>
+      <div class="contact-row">
+        <div class="contact-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+        <div style="flex:1;">
+          <div class="contact-label">דוא"ל</div>
+          <div class="contact-val"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="d0bbbfbcb5bcbbb5a4b5a2a4bfa2b190b7bdb1b9bcfeb3bfbd">[email&#160;protected]</a></div>
+        </div>
+        <button class="contact-btn" onclick="window.location.href='mai'+'lto:kolelketertora@gmail.com'">שלח מייל</button>
+      </div>
+      <div class="contact-row">
+        <div class="contact-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <div style="flex:1;">
+          <div class="contact-label">כתובת הכולל</div>
+          <div class="contact-val">משפחת מקובר 8, בני ברק</div>
+        </div>
+        <button class="contact-btn" onclick="window.open('https://waze.com/ul?q=משפחת+מקובר+8+בני+ברק','_blank')">נווט</button>
+      </div>
+      <div class="contact-row">
+        <div class="contact-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <div style="flex:1;">
+          <div class="contact-label">שעות פעילות</div>
+          <div class="contact-val">א–ה, 07:00–21:00</div>
+        </div>
+      </div>
+    </div>
+
+    </div>
+
+    <button onclick="window.location.href='donate.html'" style="width:100%;padding:17px;background:linear-gradient(135deg,var(--gold),var(--gold-d));border:none;border-radius:var(--radius);font-family:'Noto Serif Hebrew',serif;font-size:1rem;font-weight:700;color:var(--navy-dd);cursor:pointer;box-shadow:0 4px 18px rgba(232,160,32,.4);margin-top:20px;">לתרומה מיידית ←</button>
+  </div>
+  <div class="bnav">
+    <button class="bnav-item" onclick="window.location.href='index.html'"><div class="bnav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div><div class="bnav-lbl">בית</div></button>
+    <button class="bnav-item" onclick="window.location.href='donate.html'"><div class="bnav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div><div class="bnav-lbl">תרומה</div></button>
+    <button class="bnav-item" onclick="window.location.href='about.html'"><div class="bnav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><div class="bnav-lbl">אודות</div></button>
+    <button class="bnav-item" onclick="window.location.href='contact.html'"><div class="bnav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.77 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><div class="bnav-lbl">צור קשר</div></button>
+  </div>
+
+<div class="bnav">
+  <button class="bnav-item" data-page="index.html" onclick="window.location.href='index.html'"><div class="bnav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div><div class="bnav-lbl">בית</div></button>
+  <button class="bnav-item" data-page="donate.html" onclick="window.location.href='donate.html'"><div class="bnav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div><div class="bnav-lbl">תרומה</div></button>
+  <button class="bnav-item" data-page="about.html" onclick="window.location.href='about.html'"><div class="bnav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><div class="bnav-lbl">אודות</div></button>
+  <button class="bnav-item active" data-page="contact.html" onclick="window.location.href='contact.html'"><div class="bnav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.77 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><div class="bnav-lbl">צור קשר</div></button>
+</div>
+</div>
+<script>
+function selAmt(btn,inputId,a){var scope=btn.closest('.donate-form-wrap');if(scope)scope.querySelectorAll('.amt-btn').forEach(function(b){b.classList.remove('sel');});btn.classList.add('sel');var el=document.getElementById(inputId);if(a>0){el.value=a;clearErr(el);}else{el.value='';el.focus();}}
+function clearErr(el){el.style.borderColor='';el.style.boxShadow='';}
+function showToast(msg){var t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(window._tt);window._tt=setTimeout(function(){t.classList.remove('show');},2600);}
+function switchReceipt(btn,type){document.querySelectorAll('.rt').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');document.getElementById('receipt-private').style.display=type==='private'?'block':'none';document.getElementById('receipt-business').style.display=type==='business'?'block':'none';}
+function switchPay(btn,type){document.querySelectorAll('.pay-opt').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');document.getElementById('pay-card-form').style.display=type==='card'?'block':'none';document.getElementById('pay-applepay-form').style.display=type==='applepay'?'block':'none';document.getElementById('pay-bit-form').style.display=type==='bit'?'block':'none';document.getElementById('main-submit-btn').style.display=type==='card'?'block':'none';if(type==='bit'){var a=document.getElementById('d-amt').value||'0';document.getElementById('bit-amount-display').textContent='₪'+a;}}
+function fmtCard(el){el.value=el.value.replace(/[^0-9]/g,'').substring(0,16).replace(/(.{4})/g,'$1 ').trim();}
+function fmtExp(el){var v=el.value.replace(/[^0-9]/g,'');if(v.length>=2)v=v.substring(0,2)+'/'+v.substring(2,4);el.value=v;}
+function submitDonate(){var amt=document.getElementById('d-amt').value;var name=document.getElementById('d-name').value;var phone=document.getElementById('d-phone').value;var email=document.getElementById('d-email').value;['d-amt','d-name','d-phone'].forEach(function(id){var el=document.getElementById(id);el.style.borderColor='';el.style.boxShadow='';});var hasError=false;if(!amt||Number(amt)<1){var el=document.getElementById('d-amt');el.style.borderColor='#E53935';el.style.boxShadow='0 0 0 3px rgba(229,57,53,.15)';hasError=true;}if(!name.trim()){var el=document.getElementById('d-name');el.style.borderColor='#E53935';el.style.boxShadow='0 0 0 3px rgba(229,57,53,.15)';hasError=true;}if(!phone.trim()){var el=document.getElementById('d-phone');el.style.borderColor='#E53935';el.style.boxShadow='0 0 0 3px rgba(229,57,53,.15)';hasError=true;}if(hasError){showToast('נא למלא את השדות המסומנים');var fw=document.querySelector('.donate-form-wrap');if(fw)fw.scrollTop=0;return;}var dedic=document.getElementById('d-dedic').value;var msg='תרומתך של <strong>₪'+parseInt(amt).toLocaleString()+'</strong> לכולל של הרב נועם ראובן התקבלה בברכה!<br><br>';if(dedic)msg+='הקדשה: '+dedic+'<br><br>';msg+='קבלה תישלח ל-'+phone+(email?' ול-'+email:'')+'.<br><br>יהי רצון שתזכה לראות פרי בלימוד התורה שתמכת בו! 🙏';localStorage.setItem('successMsg',msg);window.location.href='success.html';}
+
+</script>
+</body>
+</html>
