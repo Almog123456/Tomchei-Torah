@@ -376,6 +376,16 @@ function selType(card, type) {
   var fc = document.getElementById('field-choleh');
   if(fn) fn.style.display = type === 'לעילוי נשמה' ? 'block' : 'none';
   if(fc) fc.style.display = type === 'לרפואה שלמה' ? 'block' : 'none';
+  if(type === 'לעילוי נשמה') {
+    setTimeout(function(){
+      document.getElementById('field-niftar').scrollIntoView({behavior:'smooth', block:'center'});
+    }, 150);
+  }
+  if(type === 'לרפואה שלמה') {
+    setTimeout(function(){
+      document.getElementById('field-choleh').scrollIntoView({behavior:'smooth', block:'center'});
+    }, 150);
+  }
 }
 
 function selAmt(btn, a) {
