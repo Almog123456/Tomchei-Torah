@@ -382,9 +382,18 @@ function selAmt(btn, a) {
   document.querySelectorAll('.amt-btn').forEach(function(b){b.classList.remove('sel');});
   btn.classList.add('sel');
   var el = document.getElementById('d-amt');
-  if(a > 0){el.value = a; clearErr(el);}
-  else{el.value='';el.focus();}
-  updateSummary();
+  if(a > 0){
+    el.value = a;
+    clearErr(el);
+    updateSummary();
+    setTimeout(function(){
+      var freqSection = document.querySelector('.freq-row');
+      if(freqSection) freqSection.scrollIntoView({behavior:'smooth', block:'start'});
+    }, 200);
+  } else {
+    el.value='';
+    el.focus();
+  }
 }
 
 function setFreq(freq, btn) {
