@@ -55,7 +55,7 @@ body{font-family:'Heebo',sans-serif;color:var(--black);max-width:390px;margin:0 
 .dtype-card{background:var(--white);border:1.5px solid var(--g4);border-radius:var(--radius-sm);padding:14px 12px;cursor:pointer;transition:.15s;text-align:center;}
 .dtype-card:hover{border-color:var(--cyan);}
 .dtype-card.sel{border-color:var(--navy);background:var(--navy-bg);}
-.dtype-icon{font-size:1.5rem;margin-bottom:6px;}
+.dtype-icon{display:flex;align-items:center;justify-content:center;margin-bottom:8px;} .dtype-icon svg{stroke:var(--g2);transition:.15s;} .dtype-card.sel .dtype-icon svg{stroke:var(--navy);}
 .dtype-name{font-size:.82rem;font-weight:800;color:var(--black);margin-bottom:2px;}
 .dtype-desc{font-size:.68rem;color:var(--g2);line-height:1.4;}
 
@@ -177,32 +177,32 @@ body{font-family:'Heebo',sans-serif;color:var(--black);max-width:390px;margin:0 
   <div class="sec-title">לאיזה מטרה התרומה</div>
   <div class="donate-type-grid">
     <div class="dtype-card sel" onclick="selType(this,'כללי')">
-      <div class="dtype-icon">📖</div>
+      <div class="dtype-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
       <div class="dtype-name">תרומה כללית</div>
       <div class="dtype-desc">לטובת הכולל בכלל</div>
     </div>
     <div class="dtype-card" onclick="selType(this,'מלגה')">
-      <div class="dtype-icon">🎓</div>
+      <div class="dtype-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
       <div class="dtype-name">מלגת אברך</div>
       <div class="dtype-desc">תמיכה ישירה בלומד</div>
     </div>
     <div class="dtype-card" onclick="selType(this,'ספרים')">
-      <div class="dtype-icon">📚</div>
+      <div class="dtype-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
       <div class="dtype-name">ספרי קודש</div>
       <div class="dtype-desc">רכישת ספרים לכולל</div>
     </div>
     <div class="dtype-card" onclick="selType(this,'אחזקה')">
-      <div class="dtype-icon">🏛️</div>
+      <div class="dtype-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
       <div class="dtype-name">אחזקת הכולל</div>
       <div class="dtype-desc">תפעול ותשתיות</div>
     </div>
     <div class="dtype-card" onclick="selType(this,'לעילוי נשמה')">
-      <div class="dtype-icon">✡️</div>
+      <div class="dtype-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="2" x2="12" y2="4"/><path d="M9 8a3 3 0 0 1 6 0c0 4-3 6-3 6s-3-2-3-6z"/><line x1="12" y1="14" x2="12" y2="22"/><line x1="9" y1="22" x2="15" y2="22"/></svg></div>
       <div class="dtype-name">לעילוי נשמה</div>
       <div class="dtype-desc">לזכר נשמה יקרה</div>
     </div>
     <div class="dtype-card" onclick="selType(this,'לרפואה שלמה')">
-      <div class="dtype-icon">💙</div>
+      <div class="dtype-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
       <div class="dtype-name">לרפואה שלמה</div>
       <div class="dtype-desc">לזכות חולה</div>
     </div>
@@ -210,8 +210,7 @@ body{font-family:'Heebo',sans-serif;color:var(--black);max-width:390px;margin:0 
 
   <div class="sec-title">סכום התרומה</div>
   <div class="amt-grid">
-    <button class="amt-btn" onclick="selAmt(this,36)">₪36</button>
-    <button class="amt-btn" onclick="selAmt(this,72)">₪72</button>
+    <button class="amt-btn" onclick="selAmt(this,100)">₪100</button>
     <button class="amt-btn" onclick="selAmt(this,180)">₪180</button>
     <button class="amt-btn" onclick="selAmt(this,360)">₪360</button>
     <button class="amt-btn" onclick="selAmt(this,500)">₪500</button>
