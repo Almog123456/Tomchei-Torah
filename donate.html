@@ -122,7 +122,7 @@ body{font-family:'Heebo',sans-serif;color:var(--black);max-width:390px;margin:0 
   <div class="drawer-header">
     <div style="margin-bottom:12px;"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.6)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
     <div class="drawer-name">תומכי תורה</div>
-    <div class="drawer-sub">הכולל של הרב נועם ראובן שליט״א</div>
+    <div class="drawer-sub">תומכי תורה - בני ברק (ע"ר) | 580588689</div>
   </div>
   <div class="drawer-nav">
     <button class="drawer-item" onclick="closeDrawer();window.location.href='index.html'">
@@ -142,13 +142,13 @@ body{font-family:'Heebo',sans-serif;color:var(--black);max-width:390px;margin:0 
       <div class="di-text">צור קשר</div>
     </button>
   </div>
-  <div class="drawer-footer">תומכי תורה · בני ברק · תשפ״ה</div>
+  <div class="drawer-footer">תומכי תורה - בני ברק (ע"ר) · מס' עמותה 580588689 · תשפ"ה</div>
 </div>
 
 <!-- TOPBAR -->
 <div class="topbar">
   <button class="menu-btn" onclick="openDrawer()"><span></span><span></span><span></span></button>
-  <div class="topbar-logo">תרומה לכולל</div>
+  <div class="topbar-logo">תרומה לכולל<div style="font-size:.52rem;color:rgba(255,255,255,.4);font-family:'Heebo',sans-serif;font-weight:400;margin-top:1px;">תומכי תורה - בני ברק (ע"ר)</div></div>
   <button class="back-btn" onclick="window.location.href='index.html'">←</button>
 </div>
 
@@ -300,12 +300,30 @@ body{font-family:'Heebo',sans-serif;color:var(--black);max-width:390px;margin:0 
   </div>
   <div class="field-group"><label class="field-lbl">שם בעל הכרטיס</label><input class="field-input" type="text" id="d-cardholder" placeholder="ישראל ישראלי"></div>
 
-  <button class="next-btn" onclick="submitDonate()" style="margin-top:8px;">תרמו עכשיו</button>
+  <!-- תקנון ביטול עסקה -->
+  <div style="background:var(--navy-bg);border:1px solid var(--navy-bg2);border-radius:var(--radius-sm);padding:14px 16px;margin:16px 0 12px;">
+    <label style="display:flex;align-items:flex-start;gap:12px;cursor:pointer;">
+      <input type="checkbox" id="terms-check" onchange="toggleSubmit()" style="width:20px;height:20px;min-width:20px;accent-color:var(--navy);margin-top:2px;cursor:pointer;">
+      <span style="font-size:.82rem;color:var(--g1);line-height:1.65;">
+        קראתי ואני מסכים/ה ל<a href="terms.html" target="_blank" style="color:var(--navy);font-weight:700;text-decoration:underline;">תקנון ביטול עסקה</a> של
+        <strong style="color:var(--black);">תומכי תורה - בני ברק (ע"ר)</strong>
+        (מס' עמותה 580588689), בהתאם לחוק הגנת הצרכן, התשמ"א-1981.
+      </span>
+    </label>
+  </div>
+
+  <button class="next-btn" id="submit-donate-btn" onclick="submitDonate()" style="margin-top:8px;opacity:.45;pointer-events:none;">תרמו עכשיו</button>
   <div class="secure-note">
     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
     תשלום מאובטח · קבלה תישלח ב-SMS ובדוא"ל
   </div>
   <button class="prev-btn" onclick="goStep(2,false)">← חזרה לפרטי התורם</button>
+</div>
+
+<!-- TERMS FOOTER -->
+<div style="text-align:center;padding:10px 20px 6px;font-size:.72rem;color:var(--g3);">
+  <a href="terms.html" style="color:var(--g2);text-decoration:underline;font-weight:600;">תקנון ביטול עסקה</a>
+  &nbsp;·&nbsp; תומכי תורה - בני ברק (ע"ר) · מס' 580588689
 </div>
 
 <!-- BNAV -->
@@ -443,6 +461,15 @@ function switchReceipt(btn, type) {
 }
 
 function clearErr(el){el.style.borderColor='';el.style.boxShadow='';}
+
+function toggleSubmit(){
+  var cb = document.getElementById('terms-check');
+  var btn = document.getElementById('submit-donate-btn');
+  if(cb && btn){
+    btn.style.opacity = cb.checked ? '1' : '.45';
+    btn.style.pointerEvents = cb.checked ? 'auto' : 'none';
+  }
+}
 
 function submitDonate() {
   var amt = document.getElementById('d-amt').value;

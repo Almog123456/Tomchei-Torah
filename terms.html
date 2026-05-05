@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>תקנון ביטול עסקה — תומכי תורה - בני ברק (ע"ר)</title>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&family=Noto+Serif+Hebrew:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#1B3F8B;--navy-d:#122B6A;--navy-dd:#0C1E4A;
+  --navy-bg:#EEF2FA;--navy-bg2:#DDE4F5;
+  --cyan:#00B4D8;--cyan-d:#0090B0;
+  --gold:#FFE566;--gold-d:#F0D020;
+  --white:#FFFFFF;--black:#0D1B3E;
+  --g1:#2C3E6B;--g2:#6B7A99;--g3:#B0BCCC;--g4:#E4E9F2;--g5:#F4F6FB;
+  --green:#00C48C;--red:#E53935;
+  --radius:14px;--radius-sm:9px;
+  --shadow:0 4px 20px rgba(13,27,62,.1);
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html,body{height:100%;background:#CBD5E8;}
+body{font-family:'Heebo',sans-serif;color:var(--black);max-width:390px;margin:0 auto;background:var(--white);min-height:100vh;display:flex;flex-direction:column;}
+
+/* TOPBAR */
+.topbar{background:var(--navy);padding:12px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
+.topbar-logo{font-family:'Noto Serif Hebrew',serif;font-weight:900;font-size:.92rem;color:#fff;line-height:1.2;text-align:center;}
+.menu-btn{width:36px;height:36px;border-radius:8px;background:rgba(255,255,255,.12);border:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;}
+.menu-btn span{display:block;width:17px;height:1.5px;background:#fff;border-radius:2px;}
+.back-btn{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.15);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem;color:#fff;}
+
+/* DRAWER */
+.drawer-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:300;backdrop-filter:blur(2px);}
+.drawer-overlay.open{display:block;}
+.drawer{position:fixed;top:0;right:-290px;width:290px;height:100vh;background:var(--navy-dd);z-index:400;transition:right .28s ease;box-shadow:-6px 0 40px rgba(0,0,0,.35);display:flex;flex-direction:column;}
+.drawer.open{right:0;}
+.drawer-header{padding:52px 22px 20px;border-bottom:1px solid rgba(255,255,255,.08);}
+.drawer-name{font-size:1.2rem;font-weight:900;color:#fff;font-family:'Noto Serif Hebrew',serif;}
+.drawer-sub{font-size:.8rem;color:rgba(255,255,255,.4);margin-top:4px;}
+.drawer-nav{flex:1;padding:8px 0;}
+.drawer-item{display:flex;align-items:center;gap:14px;padding:15px 22px;cursor:pointer;border:none;border-bottom:1px solid rgba(255,255,255,.05);background:transparent;width:100%;font-family:'Heebo',sans-serif;text-align:right;transition:background .15s;}
+.drawer-item:hover{background:rgba(255,255,255,.06);}
+.di-icon{width:38px;height:38px;border-radius:9px;background:rgba(0,180,216,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.di-icon svg{stroke:rgba(255,255,255,.75);}
+.di-text{font-size:1.05rem;font-weight:600;color:rgba(255,255,255,.85);}
+.drawer-footer{padding:16px 22px;border-top:1px solid rgba(255,255,255,.07);font-size:.65rem;color:rgba(255,255,255,.2);text-align:center;}
+
+/* CONTENT */
+.page-body{flex:1;overflow-y:auto;padding:24px 20px 60px;}
+
+.page-header{margin-bottom:24px;padding-bottom:20px;border-bottom:2px solid var(--navy-bg2);}
+.page-header-badge{display:inline-flex;align-items:center;gap:6px;background:var(--navy-bg);border:1px solid var(--navy-bg2);border-radius:4px;padding:4px 12px;font-size:.68rem;font-weight:800;color:var(--navy);letter-spacing:.06em;margin-bottom:10px;}
+.page-title{font-family:'Noto Serif Hebrew',serif;font-size:1.6rem;font-weight:900;color:var(--navy);line-height:1.2;margin-bottom:6px;}
+.page-subtitle{font-size:.82rem;color:var(--g2);line-height:1.6;}
+
+.org-box{background:var(--navy-bg);border:1px solid var(--navy-bg2);border-radius:var(--radius-sm);padding:14px 16px;margin-bottom:24px;}
+.org-box-label{font-size:.68rem;font-weight:800;color:var(--cyan-d);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px;}
+.org-name{font-size:1rem;font-weight:900;color:var(--navy);}
+.org-num{font-size:.82rem;color:var(--g2);margin-top:2px;}
+
+.section{margin-bottom:24px;}
+.section-title{font-size:1rem;font-weight:900;color:var(--navy);margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+.section-title::before{content:'';display:block;width:4px;height:18px;background:var(--gold);border-radius:2px;flex-shrink:0;}
+.section-body{font-size:.9rem;color:var(--g1);line-height:1.75;}
+.section-body p{margin-bottom:10px;}
+.section-body p:last-child{margin-bottom:0;}
+.section-body strong{color:var(--black);font-weight:800;}
+
+.law-box{background:var(--navy-bg);border-right:4px solid var(--navy);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:14px 16px;margin:16px 0;font-size:.82rem;color:var(--g1);line-height:1.7;}
+.law-box strong{color:var(--navy);}
+
+.steps-list{list-style:none;counter-reset:steps;}
+.steps-list li{counter-increment:steps;display:flex;gap:12px;margin-bottom:14px;align-items:flex-start;}
+.steps-list li::before{content:counter(steps);min-width:28px;height:28px;background:var(--navy);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:800;flex-shrink:0;margin-top:1px;}
+.steps-list li .step-text{font-size:.88rem;color:var(--g1);line-height:1.65;}
+.steps-list li .step-text strong{color:var(--black);}
+
+.contact-box{background:var(--navy);border-radius:var(--radius);padding:18px;margin-top:8px;}
+.contact-box-title{font-size:.82rem;font-weight:700;color:rgba(255,255,255,.6);margin-bottom:12px;}
+.contact-row{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.contact-row:last-child{margin-bottom:0;}
+.contact-icon{width:34px;height:34px;border-radius:8px;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.contact-icon svg{stroke:rgba(255,255,255,.8);}
+.contact-val{font-size:.9rem;font-weight:700;color:#fff;}
+.contact-sub{font-size:.72rem;color:rgba(255,255,255,.45);}
+
+.update-date{text-align:center;font-size:.72rem;color:var(--g3);margin-top:24px;padding-top:16px;border-top:1px solid var(--g4);}
+
+/* BNAV */
+.bnav{position:fixed;bottom:0;right:0;left:0;max-width:390px;margin:0 auto;background:var(--white);border-top:1px solid var(--g4);display:flex;z-index:200;box-shadow:0 -2px 16px rgba(13,27,62,.07);}
+.bnav-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:9px 4px;border:none;background:transparent;cursor:pointer;gap:3px;}
+.bnav-icon svg{stroke:var(--g3);}
+.bnav-lbl{font-size:.62rem;font-weight:700;color:var(--g3);}
+.bnav-item.active .bnav-icon svg{stroke:var(--navy);}
+.bnav-item.active .bnav-lbl{color:var(--navy);font-weight:800;}
+</style>
+</head>
+<body>
+
+<!-- DRAWER -->
+<div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
+<div class="drawer" id="drawer">
+  <div class="drawer-header">
+    <div style="margin-bottom:12px;"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.6)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
+    <div class="drawer-name">תומכי תורה</div>
+    <div class="drawer-sub">תומכי תורה - בני ברק (ע"ר) | 580588689</div>
+  </div>
+  <div class="drawer-nav">
+    <button class="drawer-item" onclick="closeDrawer();window.location.href='index.html'">
+      <div class="di-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+      <div class="di-text">דף הבית</div>
+    </button>
+    <button class="drawer-item" onclick="closeDrawer();window.location.href='donate.html'">
+      <div class="di-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+      <div class="di-text">תרומה לכולל</div>
+    </button>
+    <button class="drawer-item" onclick="closeDrawer();window.location.href='about.html'">
+      <div class="di-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
+      <div class="di-text">אודות הכולל</div>
+    </button>
+    <button class="drawer-item" onclick="closeDrawer();window.location.href='contact.html'">
+      <div class="di-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.77 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+      <div class="di-text">צור קשר</div>
+    </button>
+  </div>
+  <div class="drawer-footer">תומכי תורה - בני ברק (ע"ר) · מס' עמותה 580588689 · תשפ"ה</div>
+</div>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <button class="menu-btn" onclick="openDrawer()"><span></span><span></span><span></span></button>
+  <div class="topbar-logo">תקנון ביטול עסקה</div>
+  <button class="back-btn" onclick="history.back()">←</button>
+</div>
+
+<div class="page-body">
+
+  <div class="page-header">
+    <div class="page-header-badge">מסמך משפטי</div>
+    <div class="page-title">תקנון ביטול עסקה</div>
+    <div class="page-subtitle">בהתאם לחוק הגנת הצרכן, התשמ"א-1981 ותקנות ביטול עסקה, התשע"א-2010</div>
+  </div>
+
+  <div class="org-box">
+    <div class="org-box-label">פרטי העמותה</div>
+    <div class="org-name">תומכי תורה - בני ברק (ע"ר)</div>
+    <div class="org-num">מספר עמותה: 580588689</div>
+  </div>
+
+  <!-- סעיף 1 -->
+  <div class="section">
+    <div class="section-title">כללי</div>
+    <div class="section-body">
+      <p>עמותת <strong>תומכי תורה - בני ברק (ע"ר)</strong> (להלן: "העמותה") מאפשרת ביצוע תרומות באמצעות האתר. תקנון זה מסדיר את זכויות התורם בנוגע לביטול עסקת תרומה, בהתאם לדרישות הדין.</p>
+      <p>הוראות תקנון זה חלות על כל עסקת תרומה המבוצעת דרך אתר האינטרנט של העמותה.</p>
+    </div>
+  </div>
+
+  <!-- סעיף 2 -->
+  <div class="section">
+    <div class="section-title">זכות ביטול עסקה</div>
+    <div class="section-body">
+      <div class="law-box">
+        <strong>על פי חוק הגנת הצרכן, התשמ"א-1981 ותקנות ביטול עסקה (ביטול עסקה), התשע"א-2010</strong> — לתורם הזכות לבטל עסקת תרומה חד-פעמית בתוך <strong>14 ימים</strong> מיום ביצועה.
+      </div>
+      <p>ביטול עסקת <strong>הוראת קבע חודשית</strong> ניתן לביצוע בכל עת, ויחול החל מהחיוב החודשי הבא שטרם בוצע.</p>
+      <p><strong>לתשומת לבך:</strong> תרומות שכבר הועברו לטובת פעילות הכולל ולא ניתן להחזירן בפועל — יטופלו בכל מקרה לגופו בהתאם לנסיבות.</p>
+    </div>
+  </div>
+
+  <!-- סעיף 3 -->
+  <div class="section">
+    <div class="section-title">כיצד לבטל עסקה</div>
+    <ol class="steps-list">
+      <li>
+        <div class="step-text">
+          <strong>פנייה בכתב או בטלפון</strong> — יש לפנות לעמותה בתוך 14 ימים מיום ביצוע התרומה, באחד מאמצעי הקשר המפורטים להלן.
+        </div>
+      </li>
+      <li>
+        <div class="step-text">
+          <strong>פרטים לציון בבקשת הביטול:</strong> שם מלא, מספר טלפון, סכום התרומה, תאריך הביצוע, ו-4 ספרות אחרונות של כרטיס האשראי.
+        </div>
+      </li>
+      <li>
+        <div class="step-text">
+          <strong>אישור ביטול</strong> — העמותה תשלח אישור ביטול בתוך 3 ימי עסקים מקבלת הבקשה.
+        </div>
+      </li>
+      <li>
+        <div class="step-text">
+          <strong>החזר כספי</strong> — ככל שיאושר ביטול, הזיכוי יבוצע לכרטיס האשראי בו בוצעה העסקה בתוך 14 ימי עסקים.
+        </div>
+      </li>
+    </ol>
+  </div>
+
+  <!-- סעיף 4 -->
+  <div class="section">
+    <div class="section-title">ביטול הוראת קבע</div>
+    <div class="section-body">
+      <p>תורם שהגדיר הוראת קבע חודשית רשאי לבטלה בכל עת ללא תנאי, בפנייה לעמותה באחד מאמצעי הקשר המפורטים.</p>
+      <p>הביטול ייכנס לתוקף לגבי החיוב החודשי הבא שטרם בוצע. <strong>לא יבוצע חיוב נוסף</strong> לאחר קבלת בקשת הביטול ואישורה.</p>
+    </div>
+  </div>
+
+  <!-- סעיף 5 -->
+  <div class="section">
+    <div class="section-title">יצירת קשר לביטול עסקה</div>
+    <div class="contact-box">
+      <div class="contact-box-title">לבקשות ביטול ופניות — ניתן לפנות:</div>
+      <div class="contact-row">
+        <div class="contact-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.77 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+        <div>
+          <div class="contact-val">052-7160940</div>
+          <div class="contact-sub">טלפון / וואטסאפ — לפנייה לביטול עסקה</div>
+        </div>
+      </div>
+      <div class="contact-row">
+        <div class="contact-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+        <div>
+          <div class="contact-val" id="terms-email">kolelketertora@gmail.com</div>
+          <div class="contact-sub">דוא"ל לבקשות ביטול</div>
+        </div>
+      </div>
+      <div class="contact-row">
+        <div class="contact-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <div>
+          <div class="contact-val">משפחת מקובר 8, בני ברק</div>
+          <div class="contact-sub">כתובת העמותה</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- סעיף 6 -->
+  <div class="section">
+    <div class="section-title">הדין החל</div>
+    <div class="section-body">
+      <p>תקנון זה כפוף לדיני מדינת ישראל. כל מחלוקת הנוגעת לתקנון זה תידון בבתי המשפט המוסמכים בישראל.</p>
+      <p>תקנון זה ניתן לשינוי בכל עת. הגרסה העדכנית תמיד מופיעה באתר.</p>
+    </div>
+  </div>
+
+  <div class="update-date">עודכן לאחרונה: מאי 2025 · תומכי תורה - בני ברק (ע"ר) · מס' 580588689</div>
+
+</div>
+
+<!-- BNAV -->
+<div class="bnav">
+  <button class="bnav-item" onclick="window.location.href='index.html'"><div class="bnav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div><div class="bnav-lbl">בית</div></button>
+  <button class="bnav-item" onclick="window.location.href='donate.html'"><div class="bnav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div><div class="bnav-lbl">תרומה</div></button>
+  <button class="bnav-item" onclick="window.location.href='about.html'"><div class="bnav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><div class="bnav-lbl">אודות</div></button>
+  <button class="bnav-item" onclick="window.location.href='contact.html'"><div class="bnav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.77 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><div class="bnav-lbl">צור קשר</div></button>
+</div>
+
+<script>
+function openDrawer(){document.getElementById('drawer').classList.add('open');document.getElementById('drawerOverlay').classList.add('open');}
+function closeDrawer(){document.getElementById('drawer').classList.remove('open');document.getElementById('drawerOverlay').classList.remove('open');}
+</script>
+</body>
+</html>
