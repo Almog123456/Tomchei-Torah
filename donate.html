@@ -272,7 +272,7 @@ body{font-family:'Heebo',sans-serif;color:var(--black);max-width:390px;margin:0 
 <!-- STEP 3: פרטי תשלום -->
 <div class="step-content" id="step3">
   <!-- סיכום -->
-  <div style="background:var(--navy);border-radius:var(--radius);padding:16px 18px;margin-bottom:20px;">
+  <div id="step3-summary" style="background:var(--navy);border-radius:var(--radius);padding:16px 18px;margin-bottom:20px;">
     <div style="font-size:.7rem;font-weight:700;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;">סיכום התרומה</div>
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
       <span style="font-size:.88rem;color:rgba(255,255,255,.7);">מטרה</span>
@@ -288,33 +288,46 @@ body{font-family:'Heebo',sans-serif;color:var(--black);max-width:390px;margin:0 
     </div>
   </div>
 
-  <div class="sec-title">אמצעי תשלום</div>
-  <div style="background:var(--navy-bg);border:1px solid var(--navy-bg2);border-radius:var(--radius);padding:16px;margin-bottom:16px;text-align:center;">
-    <div style="font-size:.82rem;color:var(--g2);margin-bottom:6px;">התשלום מבוצע בסביבה מאובטחת של טרנזילה</div>
-    <div style="display:flex;align-items:center;justify-content:center;gap:8px;">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-      <span style="font-size:.78rem;font-weight:700;color:var(--green);">SSL מוצפן · PCI DSS מאושר</span>
+  <!-- לפני לחיצה: תקנון + כפתור -->
+  <div id="step3-form">
+    <div class="sec-title">אמצעי תשלום</div>
+    <div style="background:var(--navy-bg);border:1px solid var(--navy-bg2);border-radius:var(--radius);padding:16px;margin-bottom:16px;text-align:center;">
+      <div style="font-size:.82rem;color:var(--g2);margin-bottom:6px;">התשלום מבוצע בסביבה מאובטחת של טרנזילה</div>
+      <div style="display:flex;align-items:center;justify-content:center;gap:8px;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        <span style="font-size:.78rem;font-weight:700;color:var(--green);">SSL מוצפן · PCI DSS מאושר</span>
+      </div>
     </div>
+
+    <!-- תקנון ביטול עסקה -->
+    <div style="background:var(--navy-bg);border:1px solid var(--navy-bg2);border-radius:var(--radius-sm);padding:14px 16px;margin:16px 0 12px;">
+      <label style="display:flex;align-items:flex-start;gap:12px;cursor:pointer;">
+        <input type="checkbox" id="terms-check" onchange="toggleSubmit()" style="width:20px;height:20px;min-width:20px;accent-color:var(--navy);margin-top:2px;cursor:pointer;">
+        <span style="font-size:.82rem;color:var(--g1);line-height:1.65;">
+          קראתי ואני מסכים/ה ל<a href="terms.html" target="_blank" style="color:var(--navy);font-weight:700;text-decoration:underline;">תקנון ביטול עסקה</a> של
+          <strong style="color:var(--black);">תומכי תורה - בני ברק (ע"ר)</strong>
+          (מס' עמותה 580588689), בהתאם לחוק הגנת הצרכן, התשמ"א-1981.
+        </span>
+      </label>
+    </div>
+
+    <button class="next-btn" id="submit-donate-btn" onclick="openTranzilaInline()" style="margin-top:8px;opacity:.45;pointer-events:none;">תרמו עכשיו 🔒</button>
+    <div class="secure-note">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      תשלום מאובטח · Tranzila · ישראכרט
+    </div>
+    <button class="prev-btn" onclick="goStep(2,false)">← חזרה לפרטי התורם</button>
   </div>
 
-  <!-- תקנון ביטול עסקה -->
-  <div style="background:var(--navy-bg);border:1px solid var(--navy-bg2);border-radius:var(--radius-sm);padding:14px 16px;margin:16px 0 12px;">
-    <label style="display:flex;align-items:flex-start;gap:12px;cursor:pointer;">
-      <input type="checkbox" id="terms-check" onchange="toggleSubmit()" style="width:20px;height:20px;min-width:20px;accent-color:var(--navy);margin-top:2px;cursor:pointer;">
-      <span style="font-size:.82rem;color:var(--g1);line-height:1.65;">
-        קראתי ואני מסכים/ה ל<a href="terms.html" target="_blank" style="color:var(--navy);font-weight:700;text-decoration:underline;">תקנון ביטול עסקה</a> של
-        <strong style="color:var(--black);">תומכי תורה - בני ברק (ע"ר)</strong>
-        (מס' עמותה 580588689), בהתאם לחוק הגנת הצרכן, התשמ"א-1981.
-      </span>
-    </label>
+  <!-- אחרי לחיצה: iframe בתוך הדף -->
+  <div id="step3-iframe-wrap" style="display:none;">
+    <div style="background:var(--navy-bg);border:1px solid var(--navy-bg2);border-radius:var(--radius-sm);padding:10px 14px;margin-bottom:12px;display:flex;align-items:center;gap:8px;">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      <span style="font-size:.78rem;font-weight:700;color:var(--green);">סביבת תשלום מאובטחת · Tranzila</span>
+    </div>
+    <iframe id="tranzila-iframe" src="" style="width:100%;height:520px;border:none;border-radius:var(--radius);background:#fff;" allow="payment"></iframe>
+    <button class="prev-btn" style="margin-top:12px;" onclick="closeTranzilaInline()">← חזרה לסיכום</button>
   </div>
-
-  <button class="next-btn" id="submit-donate-btn" onclick="openTranzilaModal()" style="margin-top:8px;opacity:.45;pointer-events:none;">תרמו עכשיו 🔒</button>
-  <div class="secure-note">
-    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-    תשלום מאובטח · Tranzila · ישראכרט
-  </div>
-  <button class="prev-btn" onclick="goStep(2,false)">← חזרה לפרטי התורם</button>
 </div>
 
 <!-- TRANZILA MODAL -->
@@ -478,6 +491,32 @@ function toggleSubmit(){
     btn.style.opacity = cb.checked ? '1' : '.45';
     btn.style.pointerEvents = cb.checked ? 'auto' : 'none';
   }
+}
+
+function openTranzilaInline() {
+  hideToast();
+  var amt = document.getElementById('d-amt').value;
+  var name = document.getElementById('d-name').value;
+  var phone = document.getElementById('d-phone').value;
+  var email = document.getElementById('d-email').value;
+
+  var url = 'https://pay.tranzila.com/torah';
+  var params = [];
+  if(amt) params.push('sum=' + encodeURIComponent(amt));
+  if(name) params.push('contact=' + encodeURIComponent(name));
+  if(phone) params.push('phone=' + encodeURIComponent(phone));
+  if(email) params.push('email=' + encodeURIComponent(email));
+  if(selectedFreq === 'monthly') params.push('task=Tokens');
+  if(params.length) url += '?' + params.join('&');
+
+  window.location.href = url;
+}
+
+function closeTranzilaInline() {
+  document.getElementById('step3-iframe-wrap').style.display = 'none';
+  document.getElementById('tranzila-iframe').src = '';
+  document.getElementById('step3-form').style.display = 'block';
+  document.getElementById('step3-summary').style.display = 'block';
 }
 
 function openTranzilaModal() {
